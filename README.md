@@ -1,73 +1,77 @@
-# React + TypeScript + Vite
+# DOCUMENTAZIONE PROGETTO - ASSEGNAZIONE RUOLI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## TEAM COMPOSITION
 
-Currently, two official plugins are available:
+### PAOLO - PROJECT MANAGER
+- Coordinamento generale del team e attività di progetto
+- Pianificazione milestone e scadenze
+- Gestione comunicazione con stakeholder e clienti
+- Monitoraggio stato di avanzamento
+- Risoluzione conflitti e problemi organizzativi
+- Allocazione risorse e gestione budget
+- Reporting stato del progetto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### NICOLÒ - SVILUPPATORE FRONTEND
+- Sviluppo interfaccia utente
+- Implementazione componenti React/Vue/Angular
+- Ottimizzazione prestazioni frontend
+- Compatibilità cross-browser
+- Integrazione con API backend
+- Testing interfaccia utente
 
-## React Compiler
+### VITO - SVILUPPATORE BACKEND E ARCHITETTO DEL SISTEMA
+- Progettazione e sviluppo architettura backend
+- Gestione database e API
+- Implementazione logica di business
+- Sicurezza e autenticazione
+- Ottimizzazione prestazioni server
+- Supporto attività di deployment
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### DANIELE - ANALISTA E TESTER
+- Analisi requisiti e documentazione tecnica
+- Testing di sistema e quality assurance
+- Monitoraggio applicazione
+- Gestione ambienti di testing
+- Supporto attività di ottimizzazione
 
-## Expanding the ESLint configuration
+## STRUTTURA COMUNICAZIONE
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Paolo (PM)
+    ↓
+Nicolò (Frontend) ←→ Vito (Backend)
+    ↓
+Daniele (Analista/Tester)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## PROCESSO DECISIONALE
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Decisioni tecniche: Proposte da Vito, validate dal team
+- Decisioni frontend: Guidate da Nicolò, approvate da Paolo
+- Processi QA/Testing: Gestiti da Daniele in coordinamento con il team
+- Decisioni strategiche: Guidate da Paolo con input del team
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## MEETING E RITUALI
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Daily Standup: Ogni giorno 9:30 (15 minuti)
+- Sprint Planning: Ogni lunedì (1 ora)
+- Review Meeting: Ogni venerdì (45 minuti)
+- Retrospettiva: Fine sprint (30 minuti)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## CANALI DI COMUNICAZIONE
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Comunicazioni urgenti: Telegram/WhatsApp
+- Documentazione: Google Drive/Confluence
+- Task tracking: Trello/Jira
+- Codice: GitHub/GitLab
+- Meeting: Google Meet/Zoom
+
+## METRICHE DI SUCCESSO
+
+- Rispetto scadenze: Monitorato da Paolo
+- Qualità codice: Monitorato da Daniele
+- Performance applicazione: Monitorato da Vito
+- Funzionalità frontend: Monitorato da Nicolò
+- Soddisfazione cliente: Monitorato da Paolo
+
+## NOTE
+
+Questa struttura garantisce chiara divisione dei ruoli mantenendo collaborazione efficace tra tutti i membri del team.
