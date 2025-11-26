@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    /* ✅ Linguaggio target moderno per Map, Set, for..of, ecc. */
+    "target": "ES2017",
+
+    /* ✅ Librerie standard disponibili nel progetto */
+    "lib": ["ES2017", "DOM"],
+
+    /* ✅ JSX moderno: non serve importare React */
+    "jsx": "react-jsx",
+
+    /* ✅ Disattiva restrizioni sugli import per semplificare la sintassi */
+    "verbatimModuleSyntax": false,
+
+    /* ✅ Altre opzioni consigliate */
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+
+  "include": ["src"]
+}
