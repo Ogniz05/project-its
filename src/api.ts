@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://13.50.101.252/api";
 
 export type Measurement = {
   id?: number;
