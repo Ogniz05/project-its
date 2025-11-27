@@ -2,10 +2,11 @@ export type MetricKey = 'speed' | 'energy' | 'mass'
 
 export interface MetricsMeta { label: string; unit: string; color: string }
 export const METRICS: Record<MetricKey, MetricsMeta> = {
-  speed:  { label: 'Velocità',        unit: 'rpm', color: '#06b6d4' },
-  energy: { label: 'Energia',         unit: 'kWh', color: '#a78bfa' },
-  mass:   { label: 'Massa sollevata', unit: 'kg',  color: '#22c55e' },
+  speed:  { label: 'Velocità',        unit: 'km/h', color: '#06b6d4' }, // speed_kmh
+  energy: { label: 'Energia',         unit: 'kWh',  color: '#a78bfa' }, // energy_kwh
+  mass:   { label: 'Massa sollevata', unit: 'kg',   color: '#22c55e' }, // mass_tons -> kg
 }
+
 
 export interface DataPoint { date: string; speed: number; energy: number; mass: number }
 export interface WeeklyPoint { week: string; value: number }
@@ -13,6 +14,7 @@ export interface WeeklyPoint { week: string; value: number }
 export function filterData(
   data: DataPoint[], mode: 'preset'|'custom', days?: number, start?: string, end?: string
 ): DataPoint[] {
+  if (!data.length) return []
   if (mode !== 'custom') {
     const n = days ?? 30
     const s = new Date(); s.setDate(s.getDate() - (n - 1))
