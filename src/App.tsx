@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react'
-import { METRICS, generateData, filterData, weeklyAverage, mean, MetricKey, DataPoint, MetricsMeta } from './data'
+import { useEffect, useMemo, useState } from 'react'
+import { api, type Measurement } from './api'
+import { METRICS, filterData, weeklyAverage, mean, type MetricKey, type DataPoint, type MetricsMeta } from './data'
 import KPI from './components/KPI'
 import MultiMetricLine from './components/MultiMetricLine'
 import WeeklyBar from './components/WeeklyBar'
@@ -11,7 +12,42 @@ export default function App() {
   const [startDate, setStartDate] = useState<string>('')
   const [endDate, setEndDate] = useState<string>('')
 
-  const all: DataPoint[] = useMemo(()=> generateData(420), [])
+  const [serverData, setServerData] = useState<Measurement[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string|null>(null)
+  const TRAIN_ID = 'ETR500-12' // opzionale: filtra per treno
+
+  useEffect(() => {
+    let stop = false
+    async function load() {
+      try {
+        setLoading(true)
+        const rows = await api.list({
+          train_id: TRAIN_ID,
+          ...(rangeMode === 'custom' ? { from: startDate || undefined, to: endDate || undefined } : {})
+        })
+        if (!stop) { setServerData(rows); setError(null) }
+      } catch (e:any) {
+        if (!stop) setError(e.message || 'Errore di rete')
+      } finally {
+        if (!stop) setLoading(false)
+      }
+    }
+    load()
+    const id = setInterval(load, 5000) // polling 5s
+    return () => { stop = true; clearInterval(id) }
+  }, [rangeMode, startDate, endDate])
+
+  const all: DataPoint[] = useMemo(() => {
+    if (!serverData?.length) return []
+    return serverData.map(r => ({
+      date: (r.date || '').slice(0,10),
+      speed: Number(r.speed) || 0,
+      energy: Number(r.energy) || 0,
+      mass: Number(r.mass) || 0,
+    }))
+  }, [serverData])
+
   const filtered: DataPoint[] = useMemo(
     () => filterData(all, rangeMode==='custom' ? 'custom' : 'preset', presetDays, startDate, endDate),
     [all, rangeMode, presetDays, startDate, endDate]
@@ -65,6 +101,9 @@ export default function App() {
           <input className="input" type="date" value={endDate} onChange={(e)=> setEndDate(e.target.value)} />
         </div>
       )}
+
+      {loading && <div className="small">Caricamento dati…</div>}
+      {error && <div className="small" style={{ color: '#f87171' }}>Errore API: {error}</div>}
 
       <div className="kpis">
         <KPI label="Valore attuale" value={last.toFixed(1)} unit={m.unit} rightIcon={'↗'} />

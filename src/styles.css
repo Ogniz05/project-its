@@ -1,27 +1,43 @@
-:root{
-  --bg:#0b1220; --panel:#0f172a; --muted:#93a4b8; --text:#e5e7eb;
-  --line:#22d3ee; --bar:#22c55e; --accent:#38bdf8; --border:#1f2937;
+:root {
+  --bg: #0b1220;
+  --panel: #0f172a;
+  --muted: #93a4b8;
+  --text: #e5e7eb;
+  --line: #22d3ee;
+  --bar: #22c55e;
+  --accent: #38bdf8;
+  --border: #1f2937;
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial}
-.container{max-width:1200px;margin:0 auto;padding:20px}
-.header{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.h-title{font-size:22px;font-weight:700}
-.select,.input{width:100%;background:#0b1220;border:1px solid var(--border);
-  color:var(--text);padding:10px 12px;border-radius:10px}
-.row{display:flex;gap:12px;flex-wrap:wrap}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px}
-.card h3{margin:0 0 8px;color:var(--muted);font-size:14px}
-.grid{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:980px){.grid{grid-template-columns:1.2fr 0.8fr}}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.kpi{display:flex;align-items:center;justify-content:space-between;background:#0b1220;
-  border:1px solid var(--border);border-radius:12px;padding:12px}
-.kpi .label{color:var(--muted);font-size:12px}
-.kpi .value{font-size:18px;font-weight:700}
-.kpi .chip{background:#0b1628;border:1px solid var(--border);border-radius:999px;padding:6px 8px;font-size:12px}
-.legend{display:flex;gap:12px;align-items:center;margin-top:6px;color:var(--muted);font-size:12px}
-.dot{width:10px;height:10px;border-radius:999px;display:inline-block}
-.dot.speed{background:#06b6d4}.dot.energy{background:#a78bfa}.dot.mass{background:#22c55e}
-.small{color:var(--muted);font-size:12px}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Noto Sans", Helvetica, Arial, sans-serif;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+.header { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.h-title { font-size: 22px; font-weight: 700; }
+.small { color: var(--muted); font-size: 12px; }
+
+.select, .input {
+  width: 100%; background: #0b1220; border: 1px solid var(--border);
+  color: var(--text); padding: 10px 12px; border-radius: 10px;
+}
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
+.card h3 { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
+
+.grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 980px) { .grid { grid-template-columns: 1.2fr 0.8fr; } }
+
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.legend {
+  display: flex; gap: 12px; align-items: center; margin-top: 6px;
+  color: var(--muted); font-size: 12px;
+}
+.dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
+.dot.speed { background: #06b6d4; } .dot.energy { background: #a78bfa; } .dot.mass { background: #22c55e; }

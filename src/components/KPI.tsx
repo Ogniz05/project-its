@@ -1,3 +1,5 @@
+import './KPI.css'
+
 type Props = { label: string; value: string | number; unit?: string; rightIcon?: React.ReactNode }
 
 export default function KPI({ label, value, unit, rightIcon }: Props) {

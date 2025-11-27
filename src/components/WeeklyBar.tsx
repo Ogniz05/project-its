@@ -1,3 +1,4 @@
+import './WeeklyBar.css'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { stdDev, WeeklyPoint } from '../data'
 
@@ -10,10 +11,10 @@ export default function WeeklyBar({ data, color }: Props) {
 
   return (
     <div>
-      <div className="small">
+      <div className="weekly-bar-meta">
         Intervallo: {range[0].toFixed(1)} – {range[1].toFixed(1)} | Dev. standard: {std.toFixed(1)}
       </div>
-      <div style={{ width:'100%', height:320 }}>
+      <div className="weekly-bar-container">
         <ResponsiveContainer>
           <BarChart data={data} margin={{ top:10, right:20, left:0, bottom:0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
