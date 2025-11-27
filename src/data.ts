@@ -48,3 +48,36 @@ export function weeklyAverage(data: DataPoint[], key: MetricKey): WeeklyPoint[] 
   map.forEach((v, k) => { pairs.push([k, v]) })
   return pairs.sort((a,b)=> a[0]<b[0] ? -1 : 1).map(([k, arr]) => ({ week: k, value: mean(arr) }))
 }
+
+export function dailyAverage(data: DataPoint[], key: MetricKey, startDate?: Date, endDate?: Date): WeeklyPoint[] {
+  const map = new Map<string, number[]>()
+  for (const r of data) {
+    const d = new Date(r.date)
+    const k = d.toISOString().slice(0,10)
+    if (!map.has(k)) map.set(k, [])
+    map.get(k)!.push(r[key])
+  }
+  
+  const result: WeeklyPoint[] = []
+  
+  if (startDate && endDate) {
+    const start = new Date(startDate)
+    const end = new Date(endDate)
+    const current = new Date(start)
+    
+    while (current <= end) {
+      const dateStr = current.toISOString().slice(0,10)
+      const values = map.get(dateStr) || []
+      result.push({ week: dateStr, value: values.length > 0 ? mean(values) : 0 })
+      current.setDate(current.getDate() + 1)
+    }
+  } else {
+    const pairs: Array<[string, number[]]> = []
+    map.forEach((v, k) => { pairs.push([k, v]) })
+    pairs.sort((a,b)=> a[0]<b[0] ? -1 : 1).forEach(([k, arr]) => {
+      result.push({ week: k, value: mean(arr) })
+    })
+  }
+  
+  return result
+}

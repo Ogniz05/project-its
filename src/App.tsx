@@ -3,7 +3,7 @@ import { api } from "./api";
 import {
   METRICS,
   filterData,
-  weeklyAverage,
+  dailyAverage,
   mean,
   type MetricKey,
   type DataPoint,
@@ -81,10 +81,27 @@ export default function App() {
   const first = hasData ? effective[0][metric] : 0;
   const variation = hasData && first ? ((last - first) / first) * 100 : 0;
 
-  const weekly = useMemo(
-    () => weeklyAverage(effective, metric),
-    [effective, metric]
-  );
+  const chartData = useMemo(() => {
+    let start: Date | undefined;
+    let end: Date | undefined;
+    
+    if (rangeMode === "preset") {
+      const d = new Date();
+      d.setDate(d.getDate() - (presetDays - 1));
+      start = d;
+      end = new Date();
+    } else {
+      if (startDate && endDate) {
+        start = new Date(startDate);
+        end = new Date(endDate);
+      } else if (effective.length > 0) {
+        start = new Date(effective[0].date);
+        end = new Date(effective[effective.length - 1].date);
+      }
+    }
+    return dailyAverage(effective, metric, start, end);
+  }, [effective, metric, rangeMode, presetDays, startDate, endDate]);
+
   const m = METRICS[metric];
 
   return (
@@ -207,8 +224,8 @@ export default function App() {
         </div>
 
         <div className="card" style={{ minHeight: 380 }}>
-          <h3>Medie settimanali</h3>
-          <WeeklyBar data={weekly} color={m.color} />
+          <h3>Medie giornaliere</h3>
+          <WeeklyBar data={chartData} color={m.color} />
         </div>
       </div>
     </div>
