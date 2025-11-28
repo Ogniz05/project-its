@@ -4,7 +4,7 @@ export interface MetricsMeta { label: string; unit: string; color: string }
 export const METRICS: Record<MetricKey, MetricsMeta> = {
   speed:  { label: 'Velocità',        unit: 'km/h', color: '#06b6d4' }, // speed_kmh
   energy: { label: 'Energia',         unit: 'kWh',  color: '#a78bfa' }, // energy_kwh
-  mass:   { label: 'Massa sollevata', unit: 'kg',   color: '#22c55e' }, // mass_tons -> kg
+  mass:   { label: 'Peso Attuale', unit: 'kg',   color: '#22c55e' }, // mass_tons -> kg
 }
 
 

@@ -109,7 +109,7 @@ export default function App() {
       <div className="header">
         <div>
           <div className="h-title">Dashboard</div>
-          <div className="small">Visualizzazione storica delle prestazioni</div>
+          <div className="small">Visualizzazione in tempo reale delle prestazioni di un treno</div>
         </div>
 
         <div className="row">
